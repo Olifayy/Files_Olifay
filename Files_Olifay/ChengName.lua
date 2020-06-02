@@ -5,11 +5,11 @@ if text then
 tdcli_function({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data)
 if data.id_ then 
 if data.id_ ~= bot_id then
-local OlifayChengName = database:get(bot_id.."Olifay:Cheng:Name"..data.id_)
+local OlifayChengName = redis:get(bot_id.."Olifay:Cheng:Name"..data.id_)
 if not data.first_name_ then 
 if OlifayChengName then 
 send(msg.chat_id_, msg.id_, "يولد هذا غير اسمه لك ها كلب  ["..OlifayChengName..']')
-database:del(bot_id.."Olifay:Cheng:Name"..data.id_) 
+redis:del(bot_id.."Olifay:Cheng:Name"..data.id_) 
 end
 end
 if data.first_name_ then 
@@ -23,7 +23,7 @@ local Text = {
 }
 send(msg.chat_id_, msg.id_,Text[math.random(#Text)])
 end  
-database:set(bot_id.."Olifay:Cheng:Name"..data.id_, data.first_name_) 
+redis:set(bot_id.."Olifay:Cheng:Name"..data.id_, data.first_name_) 
 end
 end
 end
@@ -31,4 +31,4 @@ end,nil)
 end
 
 end
-return {Olifay = Olifaye}
+return {OlifayBot = Olifaye}
